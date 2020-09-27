@@ -9,7 +9,7 @@ namespace WebApplication.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class EmployeesController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
@@ -18,7 +18,7 @@ namespace WebApplication.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public EmployeesController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
@@ -26,7 +26,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            Console.WriteLine("Request to WeatherForecastController received");
+            Console.WriteLine("Request to EmployeesController received");
 
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

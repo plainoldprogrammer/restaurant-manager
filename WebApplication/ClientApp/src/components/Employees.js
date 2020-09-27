@@ -52,7 +52,7 @@ export class Employees extends Component {
   }
 
   async populateWeatherData() {
-    const response = await fetch('https://localhost:5001/weatherforecast');
+    const response = await fetch('https://localhost:5001/employees');
     const data = await response.json();
     this.setState({ forecasts: data, loading: false });
   }
