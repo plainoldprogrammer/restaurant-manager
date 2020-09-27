@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 namespace WebApplication.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class EmployeesController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -23,8 +22,8 @@ namespace WebApplication.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("employees/all")]
+        public IEnumerable<WeatherForecast> GetAllEmployees()
         {
             Console.WriteLine("Request to EmployeesController received");
 
