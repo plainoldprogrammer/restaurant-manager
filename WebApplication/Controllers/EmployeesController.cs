@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -23,18 +23,15 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet("employees/all")]
-        public IEnumerable<WeatherForecast> GetAllEmployees()
+        public IEnumerable<Employee> GetAllEmployees()
         {
             Console.WriteLine("Request to EmployeesController received");
 
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            RestaurantContext dbContext = new RestaurantContext();
+
+            var employees = dbContext.Employee.Select(x => x);
+
+            return employees;
         }
     }
 }
