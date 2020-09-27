@@ -5,31 +5,29 @@ export class Employees extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+    this.state = { employees: [], loading: true };
   }
 
   componentDidMount() {
-    this.populateWeatherData();
+    this.populateEmployeesData();
   }
 
-  static renderForecastsTable(forecasts) {
+  static renderEmployeesTable(employees) {
     return (
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
           </tr>
         </thead>
         <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
+          {employees.map(employee =>
+            <tr key={employee.date}>
+              <td>{employee.id}</td>
+              <td>{employee.firstName}</td>
+              <td>{employee.lastName}</td>
             </tr>
           )}
         </tbody>
@@ -40,20 +38,20 @@ export class Employees extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : Employees.renderForecastsTable(this.state.forecasts);
+      : Employees.renderEmployeesTable(this.state.employees);
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
+        <h1 id="tabelLabel">Employees</h1>
+        <p>Employees panel</p>
         {contents}
       </div>
     );
   }
 
-  async populateWeatherData() {
+  async populateEmployeesData() {
     const response = await fetch('https://localhost:5001/employees/all');
     const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
+    this.setState({ employees: data, loading: false });
   }
 }
