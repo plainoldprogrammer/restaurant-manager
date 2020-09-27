@@ -16,6 +16,7 @@ namespace WebApplication.Models
         }
 
         public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<Wages> Wages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,6 +36,15 @@ namespace WebApplication.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.LastName)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Wages>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Position)
                     .HasMaxLength(30)
                     .IsUnicode(false);
             });
