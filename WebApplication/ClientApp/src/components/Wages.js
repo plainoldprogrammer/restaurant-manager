@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-export class Employees extends Component {
-  static displayName = Employees.name;
+export class Wages extends Component {
+  static displayName = Wages.name;
 
   constructor(props) {
     super(props);
@@ -26,8 +26,8 @@ export class Employees extends Component {
           {employees.map(employee =>
             <tr key={employee.date}>
               <td>{employee.id}</td>
-              <td>{employee.firstName}</td>
-              <td>{employee.lastName}</td>
+              <td>{employee.position}</td>
+              <td>{employee.amount}</td>
             </tr>
           )}
         </tbody>
@@ -38,19 +38,19 @@ export class Employees extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : Employees.renderEmployeesTable(this.state.employees);
+      : Wages.renderEmployeesTable(this.state.employees);
 
     return (
       <div>
         <h1 id="tabelLabel">Employees</h1>
-        <p>Employees panel</p>
+        <p>Wages panel</p>
         {contents}
       </div>
     );
   }
 
   async populateEmployeesData() {
-    const response = await fetch('https://localhost:5001/employees');
+    const response = await fetch('https://localhost:5001/wages');
     const data = await response.json();
     this.setState({ employees: data, loading: false });
   }

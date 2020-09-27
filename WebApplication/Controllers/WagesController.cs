@@ -8,7 +8,7 @@ using WebApplication.Models;
 namespace WebApplication.Controllers
 {
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class WagesController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
@@ -17,19 +17,19 @@ namespace WebApplication.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public EmployeesController(ILogger<WeatherForecastController> logger)
+        public WagesController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet("/employees")]
-        public IEnumerable<Employee> GetAllEmployees()
+        [HttpGet("/wages")]
+        public IEnumerable<Wages> GetAllEmployees()
         {
-            Console.WriteLine("Request to EmployeesController received");
+            Console.WriteLine("Request to WagesController received");
 
             RestaurantContext dbContext = new RestaurantContext();
-            var employees = dbContext.Employee.Select(x => x);
-            return employees;
+            var wages = dbContext.Wages.Select(x => x);
+            return wages;
         }
     }
 }
